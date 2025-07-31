@@ -4,19 +4,42 @@
 ui8 ERROR_NO = 0;
 
 /*----------------------------------------------------------------------------*/
-const char * get_error(error_code code){
+const char *get_error(error_code code)
+{
     switch (code)
     {
-        case ERR_OK:        return "No Errors.";
-        case ERR_MEM_FAIL:  return "Failed to allocate memory on the HEAP";
-        case ERR_UNINTIALISED_STR: return "Struct String Uninitialised.";
-        case ERR_UNINTIALISED_TEXT: return "Text Input is either blank or uninitialsied.";
-        case ERR_UNKOWN:    return "Unkown Error Occured";
-        default: return "Error Un-defined";
+    case ERR_OK:
+        return "No errors.";
+    case ERR_MEM_FAIL:
+        return "Failed to allocate memory on the heap.";
+    case ERR_UNINITIALISED_STR:
+        return "Struct `string` is uninitialised.";
+    case ERR_UNINITIALISED_TEXT:
+        return "Text input is blank or uninitialised.";
+    case ERR_UNINITIALISED_DATA:
+        return "No string data in the struct to process.";
+    case ERR_UNKNOWN:
+        return "Unknown error occurred.";
+    default:
+        return "Error undefined.";
     }
 }
 
-void throw_error(error_code code){
-    printf("Fatal Error Occured: %s\n", get_error(code));
-    exit(0);
+
+void throw_error_impl(error_code code, const char *file, int line, const char *func)
+{
+    fprintf(stderr,
+            "\033[1;31m[FATAL ERROR]\033[0m %s\n"
+            "  \033[1;33mFile:\033[0m %s\n"
+            "  \033[1;33mLine:\033[0m %d\n"
+            "  \033[1;33mFunction:\033[0m %s\n",
+            get_error(code), file, line, func);
+
+    fprintf(stderr, "\nProgram aborted.\n");
+    exit(EXIT_FAILURE); 
+}
+
+void info_error(char * text)
+{
+    printf("\033[1;31m[FATAL Interupt]\033[0m %s\n", text);
 }

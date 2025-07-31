@@ -3,11 +3,10 @@
 
 int main()
 {
-    string * text;
-    string_init(&text);
-    string_copy("LMFAO", text);
+    string * text = NULL;
+    string_update("I LOVE COCK", text);
     text->data[0] = 'V';
-    printf("%s\n%d", text->data, text->length);
+    printf("%s\n%d\n", text->data, (int)text->length);
     string_free(&text);
     return 0;
 }
