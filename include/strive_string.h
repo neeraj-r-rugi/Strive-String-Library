@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdarg.h>
 //Frameworks inclusion.
 #include "strive_error.h"
 
@@ -52,7 +53,64 @@ void string_update(char * text, string * str);
  */
 size_t string_length(string * str);
 
+/**
+ * @brief Ensures that the string object (and optionally its data) exists.
+ *
+ * Checks if the string pointer is not NULL. If check_data is true, also checks if the data pointer is not NULL.
+ * Throws an error if the checks fail.
+ *
+ * @param str Pointer to the string structure to check.
+ * @param check_data If true, also check that str->data is not NULL.
+ */
 void string_enforce_exist(string * str, bool check_data);
+
+/**
+ * @brief Extracts a substring (slice) from the source string.
+ *
+ * Copies the substring from index start (inclusive) to end (exclusive) from src into dest.
+ * Supports negative indices for start and end (relative to the end of the string).
+ *
+ * @param start Start index of the slice (can be negative).
+ * @param end End index of the slice (can be negative).
+ * @param dest Pointer to the destination string structure.
+ * @param src Pointer to the source string structure.
+ */
+void string_slice(int start, int end, string * dest, string * src);
+
+/**
+ * @brief Concatenates the source string to the destination string.
+ *
+ * Appends the contents of src to the end of dest, reallocating memory as needed.
+ *
+ * @param dest Pointer to the destination string structure.
+ * @param src Pointer to the source string structure.
+ */
+void string_concat(string * dest, string * src);
+
+/**
+ * @brief Formats and writes a string to a string object and optionally to a file.
+ *
+ * Formats a string using printf-style formatting, updates the string object, and writes the result to the specified output stream.
+ *
+ * @param str Pointer to the string structure to update.
+ * @param out Output file stream (if NULL, writes to stdout).
+ * @param fmt Format string (as in printf).
+ * @param ... Additional arguments for formatting.
+ */
+void string_printf(string *str, FILE *out, const char *fmt, ...);
+
+/**
+ * @brief Reads and parses input from a file stream into a string object.
+ *
+ * Reads a line from the input stream, parses it according to the format string, and updates the string object.
+ *
+ * @param str Pointer to the string structure to update.
+ * @param in Input file stream (if NULL, reads from stdin).
+ * @param bufsize Size of the input buffer to use.
+ * @param fmt Format string (as in scanf).
+ * @param ... Additional arguments for parsing.
+ */
+void string_scanf(string * str, FILE * in, size_t bufsize, const char *fmt, ...);
 
 /**
  * @brief Frees the memory allocated for the string object.

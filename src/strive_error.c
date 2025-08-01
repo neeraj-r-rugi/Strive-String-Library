@@ -1,7 +1,7 @@
 #include "strive_error.h"
 
 // Set Global Variable.
-ui8 ERROR_NO = 0;
+int ERROR_NO = 0;
 
 /*----------------------------------------------------------------------------*/
 const char *get_error(error_code code)
@@ -18,6 +18,8 @@ const char *get_error(error_code code)
         return "Text input is blank or uninitialised.";
     case ERR_UNINITIALISED_DATA:
         return "No string data in the struct to process.";
+    case ERR_FILE:
+        return "An Error Ocuured when reading the file or with the file system.";
     case ERR_UNKNOWN:
         return "Unknown error occurred.";
     default:
@@ -36,7 +38,7 @@ void throw_error_impl(error_code code, const char *file, int line, const char *f
             get_error(code), file, line, func);
 
     fprintf(stderr, "\nProgram aborted.\n");
-    exit(EXIT_FAILURE); 
+    exit(1); 
 }
 
 void info_error(char * text)

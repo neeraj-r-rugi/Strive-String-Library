@@ -3,7 +3,7 @@ CC      := gcc
 CFLAGS  := -Iinclude
 
 # Source and output
-SRC     := src/strive.c src/strive_numerals.c src/strive_string.c src/strive_error.c demo/main.c
+SRC     := src/strive.c src/strive_string.c src/strive_error.c demo/main.c
 OUT_DIR := demo
 OUT     := $(OUT_DIR)/test
 

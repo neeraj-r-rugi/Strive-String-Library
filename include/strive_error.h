@@ -4,10 +4,10 @@
 #include<stdio.h>
 
 // Library Header File Inclusion
-#include "strive_numerals.h"
+
 
 // Global Program ERROR CODE
-extern ui8 ERROR_NO;
+extern int ERROR_NO;
 
 // Error Codes:
 typedef enum ErrorCode error_code;
@@ -18,6 +18,7 @@ enum ErrorCode
     ERR_UNINITIALISED_STR,
     ERR_UNINITIALISED_TEXT,
     ERR_UNINITIALISED_DATA,
+    ERR_FILE,
     ERR_UNKNOWN
 };
 
