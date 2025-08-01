@@ -77,7 +77,7 @@ While created by a student for educational purposes, the library is designed wit
 
 ```bash
 # Clone the repository
-git clone [https://github.com/yourusername/strive-string-library.git](https://github.com/neeraj-r-rugi/Strive-String-Library)
+git clone https://github.com/neeraj-r-rugi/Strive-String-Library
 cd strive-string-library
 
 # Or download and extract the source files
