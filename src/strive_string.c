@@ -53,6 +53,21 @@ void string_update(char * text, string * str) {
     while ((*dest++ = *text++) != str_end);
     string_length(str);
 }
+/*
+    !TODO: The current implementation of the:
+        -string_printf()
+        -string_scanf()
+    are not optimal, in-efficient, and possibly unsafe in untested events.
+    !Complete refactor from scratch of the 2 functions is to be immediately considered
+    Possible fixes:
+        -> Use Direct Sysytem Call for file acsses to remove abstraction and overhead
+        -> Complete refactored use the current abstractions of the file functions.
+    !Ideal Scenario:
+        -> func(int count, [string * s1, ...])
+                            (or)
+        -> func(const char * fomrat, [string * s1, ...])
+
+*/
 void string_printf(FILE *out, const char *fmt, ...) {
     if (!fmt) {
         ERROR_NO = ERR_UNINITIALISED_TEXT;
