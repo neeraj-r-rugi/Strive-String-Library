@@ -13,6 +13,7 @@
 #define STRIVE_ERROR_H
 //System Headers
 #include<stdio.h>
+#include<stdlib.h>
 
 // Library Header File Inclusion
 

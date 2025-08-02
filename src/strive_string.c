@@ -53,13 +53,12 @@ void string_update(char * text, string * str) {
     while ((*dest++ = *text++) != str_end);
     string_length(str);
 }
-void string_printf(string *str, FILE *out, const char *fmt, ...) {
+void string_printf(FILE *out, const char *fmt, ...) {
     if (!fmt) {
         ERROR_NO = ERR_UNINITIALISED_TEXT;
         throw_error(ERROR_NO);
         return;
     }
-    string_enforce_exist(str, true);
 
     va_list args;
     va_start(args, fmt);
@@ -78,14 +77,13 @@ void string_printf(string *str, FILE *out, const char *fmt, ...) {
     }
 
     // Allocate buffer for formatted string (+1 for null terminator)
-    char *buffer = (char *)malloc((size_t)needed + 1);
+    char * buffer = (char *)malloc((size_t)needed + 1);
     if (!buffer) {
         va_end(args);
         ERROR_NO = ERR_MEM_FAIL;
         throw_error(ERROR_NO);
         return;
     }
-
     if (vsnprintf(buffer, (size_t)needed + 1, fmt, args) < 0) {
         free(buffer);
         va_end(args);
@@ -94,7 +92,6 @@ void string_printf(string *str, FILE *out, const char *fmt, ...) {
         return;
     }
     va_end(args);
-    string_update(buffer, str);
     if (!out) out = stdout;
     fwrite(buffer, 1, (size_t)needed, out);
     free(buffer);
@@ -109,6 +106,7 @@ void string_scanf(string * str, FILE * in,size_t bufsize, const char *fmt, ...) 
 
     va_list args;
     va_start(args, fmt);
+
 
     char *buffer = (char *)malloc(bufsize);
     if (!buffer) {

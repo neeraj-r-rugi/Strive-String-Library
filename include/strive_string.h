@@ -99,16 +99,15 @@ void string_slice(int start, int end, string * dest, string * src);
 void string_concat(string * dest, string * src);
 
 /**
- * @brief Formats and writes a string to a string object and optionally to a file.
+ * @brief Formats and writes a string to a file.
  *
- * Formats a string using printf-style formatting, updates the string object, and writes the result to the specified output stream.
+ * Formats a string using printf-style formatting, and writes the result to the specified output stream.
  *
- * @param str Pointer to the string structure to update.
  * @param out Output file stream (if NULL, writes to stdout).
  * @param fmt Format string (as in printf).
  * @param ... Additional arguments for formatting.
  */
-void string_printf(string *str, FILE *out, const char *fmt, ...);
+void string_printf(FILE *out, const char *fmt, ...);
 
 /**
  * @brief Reads and parses input from a file stream into a string object.
