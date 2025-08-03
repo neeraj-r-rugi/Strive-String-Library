@@ -359,7 +359,7 @@ Please use the GitHub issue tracker to report bugs or request features.
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ```
-Copyright (C) 2024 Neeraj R Rugi
+Copyright (C) 2025 Neeraj R Rugi
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
